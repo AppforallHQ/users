@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load gravatar %}
+
+{% block content %}
+<form enctype="multipart/form-data" method="post" action=".">
+    {% csrf_token %}
+    <div class="main-body myprofile-box">
+    	    <div class="row change-avatar">
+		    {% if user_avatar %}
+      		    <img class="show-avatar" src="/panel/{{ user_avatar }}">
+		    {% else %}
+		    <img class="show-avatar" src="{% gravatar_url user.email %}">
+		    {% endif %}
+      	    <label></label>
+      	    <label></label>
+	    <div class="avatar-upload-box">
+		    <input name="avatar" type="file" class="filestyle avatar-upload" data-badge="false" data-input="false" data-buttonText="انتخاب تصویر">
+	    </div>	    
+      	    <!-- <div class="avatar-upload-box">
+            <a class="group-span-filestyle" href="http://www.gravatar.com" target="_blank">
+            <label for="filestyle-0" class="btn btn-default ">
+            <span class="buttonText">تغییر تصویر</span>
+            </label>
+	    </a>
+            </div> -->
+	</div>
+	<div class="row">
+	    <label for="name">نام شما</label><input id="name" name="name" type="text" value="{{user.first_name}}">
+	</div>
+	<div class="row">
+	    <label for="mail">ایمیل شما</label><input style="text-align:left" id="mail" dir="ltr" name="email" type="email" value="{{user.username}}">
+	</div>
+	<div class="row">
+	    <label for="mobile_number">شماره موبایل</label><input id="mobile_number" dir="ltr" name="mobile_number" type="text" value="{{user.mobile_number}}">
+	</div>
+	<div class="row">
+	    <label for="pass">رمز ورود</label><input id="pass" name="pass" type="password">
+	</div>
+	<div class="row">
+	    <label></label><input class="ibutton blue" type="submit" value="ذخیره">
+	</div>
+	{% if error_msg %}
+        ﻿<div class="profile-box-slide-error">{{ error_msg }}</div>
+	{% endif %}
+	{% if upd_error %}
+        ﻿<div class="profile-box-slide-error">خطا در بروزرسانی مشخصات شما.</div>
+	{% endif %}
+	{% if upd_success and not error_msg %}
+        <div class="slide-success">مشخصات کاربری شما با موفقیت بروزرسانی شد.</div>
+	{% endif %}
+    </div><!--myprofile-box-->
+</form>
+{% endblock %}
+
+{% block customJS%}
+<script type="application/javascript">
+</script>
+{% endblock %}

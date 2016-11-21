@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source .virtualenv/bin/activate
+exec foreman run python ipa_email_sender_worker.py

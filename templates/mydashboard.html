@@ -1,0 +1,48 @@
+﻿<{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="main-body mydashboard-box">
+    <div class="the-box">
+        <div class="discount-title">
+            <span>تخفیف شما برای دوره بعد:</span>{{ current_discount }}% تخفیف
+            </div>
+        <div class="user-discount-line-box">
+            <div class="progress-bg">
+                <div class="progress-active" style="width:33.33%"><span></span></div>
+            </div>
+            <div class="progress-lines">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </div>
+            <div class="progress-numbers">
+                <span class="line1">{{ levels.1 }}%</span>
+                <span class="line2">{{ levels.2 }}%</span>
+                <span class="line3">{{ levels.3 }}%</span>
+            </div>
+        </div>
+        <div class="discount-body">
+            <div class="col-1-6">
+                <div class="col-box">
+                    <h6>تعداد دوستان دعوت شده در این ماه:<span>{{ this_month_referreds }} نفر</span></h6>
+                </div>
+            </div>
+            <div class="col-1-6">
+                <div class="col-box">
+                    <h6>فاصله با پله بعد:<span>{{ next_level }} نفر</span></h6>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><!--mydashboard-box-->
+
+{% endblock %}
+{% block customJS %}
+<script>
+ $(document).ready(function(){
+     $(".user-discount-line-box .progress-bg .progress-active").attr('style', 'width: {{ progress_length }}%');
+ })
+</script>
+{% endblock %}

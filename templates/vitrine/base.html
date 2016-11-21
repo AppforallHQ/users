@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>اپفورال | دانلود اپفورال</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="اپفورال">
+<meta property="og:url" content="https://www.PROJECT.ir">
+<meta property="og:title" content="اپفورال">
+<meta name="twitter:url" content="https://www.PROJECT.ir">
+<meta name="twitter:domain" content="https://www.PROJECT.ir">
+<meta name="twitter:site" content="@PROJECThq">
+<meta name="twitter:creator" content="@PROJECThq">
+<meta name="twitter:title" content="اپفورال">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="google-site-verification" content="GOOGLE_SITE_VERIFICATION_CODE"/>
+<link href="/static/images/favicon.ico" rel="shortcut icon" />
+<link href="../assets/css/main.min.css" media="all" rel="stylesheet" >
+<link href="../assets/css/signup.min.css" media="all" rel="stylesheet" >
+<link href="../static/css/flipclock.css" media="all" rel="stylesheet" >
+<script src="//cdn.optimizely.com/js/3708470141.js"></script>
+<!-- Facebook Conversion Code for Download - PROJECT (free) -->
+<script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+        var fbds = document.createElement('script');
+        fbds.async = true;
+        fbds.src = '//connect.facebook.net/en_US/fbds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(fbds, s);
+        _fbq.loaded = true;
+    }
+ })();
+ window._fbq = window._fbq || [];
+ window._fbq.push(['track', '6028917486233', {'value':'0.00','currency':'USD'}]);
+</script>
+<script src="../panel/user.js"></script>
+{% block scripts %}{% endblock %}
+</head>
+<body>
+    {% include "vitrine/directdownload.html" %}
+        <header class="page-header">
+            <section class="page-top-menu">
+                <section class="container">
+                    <div class="menu-toggle" id="menu_toggle"></div>
+                    {% block login %}
+                    <div class="user-menu">
+                        <div class="login-button only_loggedout" id="login_button" style="display:none">پنل کاربران<i></i></div>
+                        <a href="/panel/" class="userislogin only_loggedin" style="display:none">
+                            <img class="user-avatar" src="/static/images/avatar.png">
+                            <span>ورود به پنل</span>
+                        </a>
+                    </div>
+                    {% include "vitrine/signin_box.html" %}
+                    {% endblock %}
+
+                    {% block menu %}
+                    <a href="/" class="head-logo"></a>
+                    <nav class="menu-nav fa" id="menu_nav">
+                        <ul>
+                            <li><a href="https://www.PROJECT.ir">خانه</a></li>
+                            <li><a href="/features">امکانات</a></li>
+                            <li><a href="/vitrine/">برنامه‌های موجود</a></li>
+                            <li><a href="http://id.PROJECT.ir">ساخت اپل ای‌دی رایگان</a></li>
+                            <li><a href="/blog">وبلاگ</a></li>
+                            <li style="display:none"><a href="/contact">تماس با ما</a></li>
+                        </ul>
+                    </nav>
+                    {% endblock %}
+                </section>
+            </section>
+            <div class="menu-darkbg" id="menu_darkbg"></div>
+        </header>
+    {% block main %}{% endblock %}
+    {% include "vitrine/footer.html" %}
+
+    <!-- Livezilla widget -->
+    <div id="livezilla_tracking" style="display:none"></div>
+    <script type="text/javascript">
+     var script = document.createElement("script");script.async=true;script.type="text/javascript";
+     var src = "/panel/chat/";setTimeout("script.src=src;document.getElementById('livezilla_tracking').appendChild(script)",1);
+    </script>
+    <noscript>
+        <img src="/panel/chat/?noscript=1" width="0" height="0" style="visibility:hidden;" alt="">
+    </noscript>
+
+    <script src="../static/js/jquery-1.9.1.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/subscription.js"></script>
+    <script src="../static/js/register.js"></script>
+    <script src="../static/js/analytics.js"></script>
+    <script src="../static/js/track.js"></script>
+    <script src="../static/js/flipclock.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+     //for Counter apps download
+     $(document).ready(function(){
+        var counter = $('.downloadscounter').FlipClock({{dl_data}}, {
+            clockFace: 'Counter'
+	      });
+
+        var socket = io();
+        socket.on('inc', function(new_count){
+            console.log(new_count);
+            counter.setValue(new_count);
+        })
+
+     });
+	  </script>
+
+<!-- This site is converting visitors into subscribers and customers with OptinMonster - http://optinmonster.com --><div id="om-qaynaggah6anlx5q-holder"></div><script>var qaynaggah6anlx5q,qaynaggah6anlx5q_poll=function(){var r=0;return function(n,l){clearInterval(r),r=setInterval(n,l)}}();!function(e,t,n){if(e.getElementById(n)){qaynaggah6anlx5q_poll(function(){if(window['om_loaded']){if(!qaynaggah6anlx5q){qaynaggah6anlx5q=new OptinMonsterApp();return qaynaggah6anlx5q.init({u:"11527.220217",staging:0,dev:0});}}},25);return;}var d=false,o=e.createElement(t);o.id=n,o.src="//a.optnmnstr.com/app/js/api.min.js",o.onload=o.onreadystatechange=function(){if(!d){if(!this.readyState||this.readyState==="loaded"||this.readyState==="complete"){try{d=om_loaded=true;qaynaggah6anlx5q=new OptinMonsterApp();qaynaggah6anlx5q.init({u:"11527.220217",staging:0,dev:0});o.onload=o.onreadystatechange=null;}catch(t){}}}};(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}(document,"script","omapi-script");</script><!-- / OptinMonster -->
+</body>

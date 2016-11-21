@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="main-body mydevices-box">
+		<div class="slide-success" style="display:{{display_slide_success}}">ایمیل فعالسازی با موفقیت ارسال شد.</div>
+		<div class="slide-error" style="display:{{display_slide_error}}">ایمیل فعالسازی قبلا برای این دستگاه ارسال شده است</div>
+        <div class="nodevice-box" style="display:{{display_notadd}}">
+            <div class="nodevice-icon"></div>
+            <h1>کاربر گرامی:</h1>
+            <p>در حال حاضر هیچکدام از دستگاه‌های شما فعالسازی نشده‌اند. لطفا ایمیل فعالسازی را روی دستگاهی که می‌خواهید اپفورال رویش نصب شود باز کنید.</p>
+			{% if paid_not_active_days %}<p>بنابر مقررات سرویس٬ شما 14 روز پس از خرید فرصت دارید اشتراک اپفورال خود را فعال کنید و از این زمان <span class="paid-not-active">{{paid_not_active_days}}</span> روز باقی مانده است.(<a href="http://www.PROJECT.ir/tos" target="_blank">شرایط و مقررات استفاده</a>)</p>{% endif %}
+            {% if activation_link_notadd %}<a class="device-activation-link" href="{{activation_link_notadd}}">ارسال مجدد ایمیل فعالسازی</a>{% endif %}
+        </div>
+    {% for device in devices_list %}
+        <div class="the-device {% if not device.registered %}notadd{%endif%}">
+            <div class="device-icon {{ device.ptype }}"></div>
+            <div class="device-desc">
+                <div class="tr">
+                {%if device.registered %}
+                    نوع دستگاه: <span>{{ device.product }}</span>
+                {% elif device.plan_label == "free" %}
+                {% else %}
+ نوع دستگاه: <span class="notadd-device-alert">دستگاهی فعال نشده است. لطفا منتظر ایمیل فعال سازی باشید.</span>                   
+                {% endif %}
+                </div>
+                <div class="tr">
+                    {% if device.plan_label == "free" %}
+                    اشتراک فعلی: <span>رایگان</span>
+                    {% else %}
+                    اشتراک فعلی: <span>{{ device.plan_label }} ماهه</span>
+                    {% endif %}
+                    {% if device.invoice_issued %}
+                    <div class="changeplan"><i></i>&nbsp;<a href="/panel/changeplan/{{device.id}}">تمدید اشتراک</a></div>
+                    {% endif %}
+                </div>
+                <div class="tr">
+                    تاریخ انقضای اشتراک فعلی:
+                    {% if device.paid_not_active_days %}
+                    <span>-</span>
+                    <p class="not-activated-alert">بنابر مقررات سرویس٬ شما 14 روز پس از خرید فرصت دارید اشتراک اپفورال خود را فعال کنید و از این زمان <span class="paid-not-active">{{device.paid_not_active_days}}</span> روز باقی مانده است.</p>
+                    {% elif device.campaigns %}
+                    <span>{{ device.campaigns }}</span>
+                    {% else %}
+                    <span>{{ device.invoice_date }}</span>
+				            {% endif %}
+                </div>
+                <div class="tr last">
+                    {% if device.plan_label != "free" %}
+                    <a class="ibutton blue" href="{{ device.invoice_url }}">
+                        آخرین صورتحساب
+                    </a>
+                    {% endif %}
+					<a class="api-link" href="{{device.link}}">دانلود مجدد اپفورال</a>
+                    <!--a class="ibutton green lefty" href="#">تغییر اشتراک</a-->
+                    {% if device.activation_link %}<a class="device-activation-link" href="{{device.activation_link}}">ارسال مجدد لینک فعالسازی</a>{%endif%}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="add-new-device-box">
+        <a class="new-device-button" href="{% url 'add_device' %}"><i>+</i>افزودن دستگاه جدید</a>
+    </div>
+</div><!--mydevices-box-->
+{% endblock %}
+
+{% block customJS %}
+<script type="application/javascript">
+</script>
+{% endblock %}

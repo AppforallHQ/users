@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "-----> Running migrations"
+
+python manage.py syncdb --noinput
+python manage.py migrate --noinput
+
+echo "-----> Done"

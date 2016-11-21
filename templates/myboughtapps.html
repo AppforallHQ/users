@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="main-body myboughtapps-box">
+ {% if bought_apps_list  %}
+  {% for bought_app in bought_apps_list %}
+  <div class="bought-app">
+    <div class="app-icon">
+      {% if bought_app.icon_normal %}
+      <img src="{{ bought_app.icon_normal }}" alt="{{ bought_app.app_name}}" />
+      {% else %}
+      <img src="{{ STATIC_URL }}images/noiconforapp.png" alt="{{ bought_app.app_name}}" />
+      {% endif %}
+    </div>
+    <div class="app-desc">
+      <div class="app-name">
+        {{ bought_app.app_name }}
+      </div>
+      <div class="tr">
+        <span>اپل ای‌دی:</span>{{ bought_app.apple_id }}
+      </div>
+      <div class="tr">
+        <span>قیمت:</span><div class="rprice">{{ bought_app.us_fee }} دلار</div>{{ bought_app.ir_fee }} ریال
+      </div>
+      <div class="tr">
+        <span>وضعیت:</span>{{ bought_app.get_status }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else  %}
+  <div class="no-bought-app">
+    <div class="nobought-img"></div>
+    کاربر گرامی<br />
+    شما تاکنون هیچ برنامه ای از طریق "مای‌اپ" خریداری نکرده اید.
+  </div>
+  {% endif %}
+</div><!--myboughtapps-box-->
+{% endblock %}
+
+{% block customJS %}
+<script type="application/javascript">
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{{err_code}}
+{{err_msg}}
+
+<script>
+function userPaymentStatus() {
+	//return {error: "{{err_code}}", message: "{{err_msg}}"};
+	// Return string as processing JSON in iOS is a pain.
+	return "{{err_code}}, {{err_msg}}"
+}
+</script>

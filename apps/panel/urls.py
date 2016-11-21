@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+
+from django.conf.urls import patterns, url
+
+from apps.panel import views
+
+urlpatterns = patterns(
+    '',
+    url(r'^$',
+        views.devices_list,
+        name='panel_index'),
+     url(r'^dashboard/$',
+        views.dashboard,
+        name='dashboard'),
+    url(r'^apps/$',
+        views.bought_apps,
+        name='panel_bought_apps_list'),
+    url(r'^invoices/$',
+        views.invoices_list,
+        name='panel_invoices_list'),
+    url(r'^invoices/(?P<invoice_id>\d+)$',
+        views.invoice_details,
+        name='invoice_details'),
+    url(r'^devices/activate/(?P<device_id>\d+)/(?P<challenge>\w+)$',
+        views.send_first_email,
+        name='send_first_email'),
+    url(r'^invoices/dev/(?P<device_id>\d+)$',
+        views.invoice_of_device,
+        name='invoice_of_device'),
+    url(r'^get_product$', views.get_product_name, name='get_product'),
+    url(r'^profile/$',
+        views.profile,
+        name='panel_profile'),
+    url(r'^devices/add$',
+        views.add_device,
+        name='add_device'),
+    url(r'^devices/welcome/(?P<invoice_id>\d+)$',
+        views.welcome_device,
+        name='welcome_device',),
+    url(r'^gift/thanks/',
+        views.gift_thanks,
+        name='gift_thanks',),
+    url(r'^invoicefail/(?P<ResCode>.*)', views.invoice_fail,
+        name="invoice_fail"),
+    url(r'^changeplan/(?P<device_id>\d+)$',
+        views.change_plan,
+        name='change_plan'),
+    url(r'^referral/$',
+        views.referral,
+        name='referral'),
+)
+

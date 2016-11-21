@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo stop users
+./export_procfile
+sudo start users
+echo "restarting uWSGI app"

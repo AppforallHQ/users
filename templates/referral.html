@@ -1,0 +1,60 @@
+﻿<{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="main-body myinvite-box">
+
+    <div class="top-box">
+        <h2>با دعوت دوستان خود به اپفورال‌، تخفیف بگیرید!</h2>
+        <p>به ازای هر کاربر جدید که از جانب شما به اپفورال معرفی شده باشد‌، برای تمدید اشتراک دوره‌ی بعدتان از تخفیف (تا سقف ۷۵٪) بهره‌منده خواهید شد.</p>
+        <p>همچنین دوستانی که از طرف شما معرفی می‌شوند‌، از ۱۰٪ تخفیف ثبت نام برخوردار خواهد شد!</p>
+    </div>
+
+    <div class="slide-success" style="display:none"></div>
+    <div class="slide-error" style="display:none"></div>
+
+    <div class="the-box last">
+        <div class="box-title">دعوت دوستان با لینک اختصاصی</div>
+        <div class="text-box">
+            <p>برای دعوت دوستانتان به اپفورال‌، لینک زیر را با آن‌ها به اشتراک بگذارید. همچنین می‌توانید با استفاده از دعوت گروهی، آن‌ها را با ایمیل دعوت کنید!</p>
+        </div>
+        <div class="rwo">
+            <div class="invite-dedicated-link">http://PROJECT.ir/?referredBy={{user_id}}</div>
+        </div>
+    </div>
+    <div class="the-box last">
+        <div class="box-title">ارسال دعوتنامه گروهی به لیست دوستان</div>
+        <div class="mail-link-box">
+            <button class="email-google-link">دعوت دوستان</button>
+            <button class="email-yahoo-link">دعوت دوستان</button>
+        </div>
+        <div class="emails-list-box" style="display:none">
+            <div class="table-title">ایمیل دوستان
+                <input id="checkAll" class="checkall-button" type="button" value="انتخاب همه">
+                <input id="checkAll" class="search-friend" type="text" placeholder="جستجو" >
+            </div>
+            <table class="emails-list-table">
+<!--
+<tr>
+<td class="check"><input type="checkbox" class="femail"></td>
+<td class="name">علی قولی</td>
+<td>vahidk1990@gmail.com</td>
+</tr>
+-->
+            </table>
+            <div class="table-bottom">
+                <a id="next-page" href="#"><i>&rarr;</i>صفحه بعد</a>
+                <a id="prev-page" href="#">صفحه قبل<i>&larr;</i></a>
+            </div>
+        </div>
+
+        <a href="#" class="email-invite-link" style="display:none">دعوت از دوستان</a>
+    </div>
+    <div class="form-loader" id="loader"><span></span></div>
+</div><!--myinvite-box-->
+{% endblock %}
+
+{% block customJS %}
+<script src="{% static 'js/oauth.js' %}"></script>
+<script src="{% static 'js/getcontacts.js' %}"></script>
+{% endblock %}

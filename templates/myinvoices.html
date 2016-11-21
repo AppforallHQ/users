@@ -1,0 +1,72 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="main-body myinvoice-box">
+    <div class="myinvoice-title">سوابق پرداخت</div>
+    <div class="row">
+
+        {% for invoice in invoices_list %}
+            <div class="col-1-12 col-2-4 the-device">
+                <div class="device-icon {{invoice.device_type}}"></div>
+                <div class="receipt {{invoice.invoice_stat}}">
+                    
+                    <div class="receipt-title">
+                        پلن انتخابی شما:
+                        <span id="show-selectpanel">{{ invoice.plan_label }} ماهه</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>مبلغ اصلی:</span>
+                        <div id="show-orig-price">{{ invoice.plan_amt }}</div>
+                    </div>
+                    <div class="receipt-row">
+                        <span>تخفیف:</span>
+                        <div id="show-discount">{{ invoice.discount_amt }}</div>
+                    </div>
+                    <div class="receipt-row">
+                        <span>مبلغ قابل پرداخت:</span>
+                        <div id="show-price">{{ invoice.invoice_amt }}</div>
+                    </div>
+                    
+                </div><!--receipt-->
+                
+                <a href="{{invoice.invoice_url}}" class="ibutton blue">جزییات</a>
+
+		{% if invoice.payment_url %}
+    <a href="{{invoice.payment_url}}" class="ibutton green">پرداخت آنلاین</a>{%endif%}
+            </div>
+        {% empty %}
+        <div class="noinvoice-text">با تشکر. در حال حاضر شما صورت حساب پرداخت نشده ندارید.</div>
+        {% endfor %}
+
+    </div>
+    {% if show_payments %}
+    <div class="row">
+			<div class="paymenthistory-box">
+				<div class="tableheadtr">
+					<span class="a">شماره ردیف</span>
+          <span class="b">تاریخ پرداخت</span>
+          <span class="c">مبلغ پرداخت</span>
+          <span class="d">بابت دستگاه</span>
+          <span class="e">جزییات</span>
+        </div>
+        {% for payment in payments %}
+        <div>
+          <span class="a">{{forloop.counter}}</span>
+          <span class="b">{{payment.date}}</span>
+          <span class="c">{{payment.price}} تومان</span>
+          <span class="d">{{payment.device}}</span>
+          <span class="e">{% if payment.link %}<a class="view" href="{{payment.link}}"></a>{% else %}ناموفق{%endif%}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div><!--row-->
+    {% endif %}
+    
+</div><!--myinvoice-box-->
+{% endblock %}
+
+{% block customJS%}
+<script type="application/javascript">
+</script>
+{% endblock %}

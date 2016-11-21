@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo foreman export upstart /etc/init -a users -u user -p 8006

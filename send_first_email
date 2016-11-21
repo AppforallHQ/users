@@ -1,0 +1,75 @@
+#!/app/users/.virtualenv/bin/python
+
+import sys
+from django.http import HttpResponse, HttpResponseRedirect
+from django.http import Http404
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
+import json
+from apps.devices.models import Device, DeviceChallengeToken
+from apps.users.models import User
+import requests
+
+import django
+django.setup()
+
+from django.template.loader import get_template
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
+from django.contrib.auth import login
+
+import analytics
+import subprocess
+
+from django.conf import settings
+from plistlib import readPlistFromString
+
+import string
+import random
+
+generate_token = lambda N: ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(N))
+
+TOKEN_LENGTH = 40
+
+
+def invoice(email, devid):
+    device = get_object_or_404(Device, pk=devid)
+
+    token = generate_token(TOKEN_LENGTH)
+    
+    while DeviceChallengeToken.objects.filter(token=token).count() > 0:
+        token = generate_token(TOKEN_LENGTH)
+        
+    DeviceChallengeToken.objects.create(device=device, token=token, is_used=False)
+
+    url = reverse('apps.devices.views.mobileconfig_static', args=(token,))
+    mobileconfig_url = "https://www.PROJECT.ir{}".format(url)
+    # Provice email along with identify traits to make customer.io happy
+    analytics.identify(device.user.id.user_id, traits={
+        'isActive': True,
+        "email": device.user.username
+    })
+    #HTTPS FOR VERIFIED MOBILECONFIG FILE
+    mobileconfig_url = mobileconfig_url.replace("http://","https://");
+    # Use {{create_account.mobileconf_url}} in customer.io email body
+    analytics.track(device.user.id.user_id, 'create_account', {
+        "mobileconf_url": mobileconfig_url,
+        "email": device.user.username
+    })
+    analytics.track(device.user.id.user_id, 'sign_up_newsletter', {
+        "email": device.user.username
+    })
+    analytics.flush()
+    print "Done."
+
+
+for device in Device.objects.filter(user__username=sys.argv[1], device_id=None):
+    print(device.id)
+    invoice(sys.argv[1], device.id)

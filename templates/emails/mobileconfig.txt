@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+        <dict>
+        <key>DeviceAttributes</key>
+        <array>
+            <string>UDID</string>
+            <string>IMEI</string>
+            <string>ICCID</string>
+            <string>VERSION</string>
+            <string>PRODUCT</string>
+        </array>
+        <key>URL</key>
+        <string>{{ endpoint_url }}</string>
+        <key>Challenge</key>
+        <string>{{ id }}</string>
+    </dict>
+	<key>PayloadDescription</key>
+	<string>این برنامه به شما کمک می‌کند تا اپفورال را روی دستگاه خود نصب کنید. لطفا دکمه‌ی Install را بزنید.</string>
+	<key>PayloadDisplayName</key>
+	<string>PROJECT - اپفورال</string>
+	<key>PayloadIdentifier</key>
+	<string>com.PROJECT.hi</string>
+	<key>PayloadOrganization</key>
+	<string>PROJECT</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Profile Service</string>
+	<key>PayloadUUID</key>
+	<string>57A223FD-F675-42C0-8F43-22D3FC3BC181</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

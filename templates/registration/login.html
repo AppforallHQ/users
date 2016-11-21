@@ -1,0 +1,67 @@
+<!--
+    (C) 2014 - PROJECT team - PROJECT.ir
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>اپفورال</title>
+<meta charset="UTF-8">{% load url from future %}{% load staticfiles %}
+<meta name="author" value="PROJECT team">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<link rel="stylesheet" href="{% static 'css/framework.css' %}" media="all">
+<link rel="stylesheet" href="{% static 'css/login-style.css' %}" media="all">
+</head>
+<body>
+<div class="the-head">
+	<div class="container-2">
+		<a href="/" class="head-logo"></a>
+  </div>
+</div>
+<div class="container-2 the-body">
+	<div class="the-main">
+		<div class="login-box">
+      <div class="login-box-title">ورود به پنل کاربری</div>
+   
+   		<div id="ssl-message-login-page">
+   					اپفورال برای اتصال شما از پروتکل امن SSL جهت رمزگذاری داده‌ها استفاده می‌کند.
+   		</div>
+   
+      <div class="login-box-body">
+        <form action="{% url 'django.contrib.auth.views.login' %}" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <label for="id_username">ایمیل:</label>
+            {{form.username}}
+          </div>
+          <div class="row">
+            <label for="id_password">پسورد:</label>
+            {{form.password}}
+          </div>
+          <div class="row">
+          	<input type="submit" value="ورود" class="ibutton blue">
+                <input type="hidden" name="next" value="{{ next }}" />
+          </div>
+        </form>
+      </div><!--login-box-body-->
+      {% if form.errors %}
+			<div class="slide-error">ایمیل یا پسورد صحیح نمی باشد.</div>
+      {% endif %}
+      <div class="login-box-bottom">
+      	<a href="/panel/reset/">پسورد خود را فراموش کرده اید؟</a>
+      </div><!--login-box-bottom-->
+      <div class="login-box-bottom gotoreg">
+      	<a href="/#register">حساب کاربری در اپفورال ندارید؟</a>
+      </div><!--login-box-bottom-->
+		</div><!--login-box-->
+    
+    <div class="gohome-box">
+      <a href="/"><i>&rarr;</i>بازگشت به صفحه نخست</a>
+    </div>
+    
+	</div><!--the-main-->
+</div><!--container-2-->
+
+<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
+{% load gravatar %}
+<head>
+<title>اپفورال</title>
+<meta charset="UTF-8">
+<meta name="author" value="PROJECT team">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<link rel="stylesheet" href="{% static 'css/framework.css' %}" media="all">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" media="all">
+<script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/spin.js' %}"></script>
+<script src="{% static 'js/jquery.spin.js' %}"></script>
+<script src="{% static 'js/analytics.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="//cdn.optimizely.com/js/3708470141.js"></script>
+</head>
+<body>
+<div class="the-head">
+	<div class="container-2">
+  	<div class="menu-toggle" id="menu-toggle"><span></span></div>
+    <div class="user-welcome-box">
+    	<a class="user-avatar" href="#">
+        {% if user_avatar %}
+          <img class="show-avatar" src="/panel/{{ user_avatar }}">
+        {% else %}
+    		  <img class="show-avatar" src="{% gravatar_url user.email %}">
+    		{% endif %}
+        </a>
+      <div class="user-hello">سلام {{ user.first_name }}</div>
+    </div>
+    <a class="signout-box" href="{% url 'logout' %}"><span>خروج</span></a>
+    <ul class="outer-link">
+        <li><a target="_blank" href="http://PROJECT.ir/">صفحه نخست</a></li>
+        <li><a target="_blank" href="http://PROJECT.ir/blog/">اپلاگ</a></li>
+        <li><a target="_blank" href="http://www.PROJECT.ir/faq">سوالات متداول</a></li>
+        <li><a target="_blank" href="http://www.PROJECT.ir/tos">شرایط و مقررات استفاده</a></li>
+        <li><a target="_blank" href="https://www.PROJECT.ir/#newsletter">تماس با ما</a></li>
+    </ul>
+  </div>
+</div>
+<div class="container-2 the-body">
+	<div class="the-side" id="the-side">
+    <ul>
+      <li class="mydashboard">
+        <a href="{% url 'dashboard' %}">
+          <span></span><h6>داشبورد</h6>
+        </a>
+      </li>
+      <li class="mydevices active">
+        <a href="{% url 'panel_index' %}">
+          <span></span><h6>دستگاه‌های من</h6>
+        </a>
+      </li>
+      <li class="myboughtapps">
+        <a href="{% url 'panel_bought_apps_list' %}">
+          <span></span><h6>برنامه‌های مای‌اپ</h6>
+        </a>
+      </li>
+      <li class="myinvoice">
+        <a href="{% url 'panel_invoices_list' %}">
+          <span></span><h6>صورت‌حساب‌های من</h6>
+        </a>
+      </li>
+      <li class="myinvitation">
+        <a href="{% url 'referral' %}">
+          <span></span><h6>دعوت دوستان</h6>
+        </a>
+      </li>
+      <li class="myprofile">
+        <a href="{% url 'panel_profile' %}">
+          <span></span><h6>مشخصات فردی</h6>
+        </a>
+      </li>
+    </ul>
+    <div class="outer-link">
+      <ul>
+        <li><a target="_blank" href="http://PROJECT.ir/">صفحه نخست</a></li>
+        <li><a target="_blank" href="http://PROJECT.ir/blog/">اپلاگ</a></li>
+        <li><a target="_blank" href="http://www.PROJECT.ir/faq">سوالات متداول</a></li>
+        <li><a target="_blank" href="http://www.PROJECT.ir/tos">شرایط و مقررات استفاده</a></li>
+      </ul>
+    </div><!--outer-link-->
+	</div><!--the-side-->
+	<div class="the-main">
+    {% for message in messages %}
+        <div id="{{ message.class }}">{{ message.text }}</div>
+    {% endfor %}
+{% block content %}{% endblock %}
+	</div><!--the-main-->
+</div><!--container-2-->
+
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/inputfilestyle.js' %}"></script>
+{% block customJS %}{% endblock %}
+<!-- This site is converting visitors into subscribers and customers with OptinMonster - http://optinmonster.com --><div id="om-qaynaggah6anlx5q-holder"></div><script>var qaynaggah6anlx5q,qaynaggah6anlx5q_poll=function(){var r=0;return function(n,l){clearInterval(r),r=setInterval(n,l)}}();!function(e,t,n){if(e.getElementById(n)){qaynaggah6anlx5q_poll(function(){if(window['om_loaded']){if(!qaynaggah6anlx5q){qaynaggah6anlx5q=new OptinMonsterApp();return qaynaggah6anlx5q.init({u:"11527.220217",staging:0,dev:0});}}},25);return;}var d=false,o=e.createElement(t);o.id=n,o.src="//a.optnmnstr.com/app/js/api.min.js",o.onload=o.onreadystatechange=function(){if(!d){if(!this.readyState||this.readyState==="loaded"||this.readyState==="complete"){try{d=om_loaded=true;qaynaggah6anlx5q=new OptinMonsterApp();qaynaggah6anlx5q.init({u:"11527.220217",staging:0,dev:0});o.onload=o.onreadystatechange=null;}catch(t){}}}};(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}(document,"script","omapi-script");</script><!-- / OptinMonster -->
+</body>
+</html>

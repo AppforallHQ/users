@@ -1,0 +1,64 @@
+﻿<!--
+    (C) 2014 - PROJECT team - PROJECT.ir
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>اپفورال</title>
+<meta charset="UTF-8">
+<meta name="author" value="PROJECT team">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<link rel="stylesheet" href="/panel/static/css/framework.css" media="all">
+<link rel="stylesheet" href="/panel/static/css/style.css" media="all">
+<link rel="stylesheet" href="/panel/static/css/gift-payment-back.css" media="all">
+</head>
+<body>
+<div class="thebody">
+	<div class="gift-box">
+	<div class="gift-box-head">
+		<a class="head-logo" href="http://PROJECT.ir/"></a>
+	</div>
+
+
+
+
+
+
+
+
+		<div class="main-body payment-box">
+			<div class="content-body">
+        <div class="level-body">
+          <div class="bank-back-slide">
+						<div class="receipt">
+							<div class="payment-stamp"></div>
+							<div class="receipt-title">پلن انتخابی شما:<span id="show-plane-name">{{plan_label}} ماهه</span></div>
+							<div class="receipt-row"><span>مبلغ اصلی:</span><div id="show-plane-price">{{plan_amount}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>تخفیف:</span><div id="show-promo">{{discount}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>مبلغ قابل پرداخت:</span><div id="show-payment">{{price}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>کد رهگیری:</span><div id="show-sales-refrence-id">{{sales_reference_id}}</div></div>
+						</div><!--receipt-->
+            
+            <div class="tnxbox">
+            	<div class="box-title">با تشکر از حسن اعتماد شما،</div>
+            	<div class="box-body">
+کد تخفیف 100 درصدی اکانت اپفورال {{plan_label}} ماهه رایگان همراه با جزئیات مراحل ثبت نام برای {{getter_name}} ارسال شد.
+               </div>
+            </div><!--tnxbox-->
+                    
+          </div><!--bank-back-slide-->
+        </div><!--level-body-->
+			</div><!--content-body-->
+      
+      
+    
+		</div><!--payment-box-->
+
+
+
+	</div>
+</div>
+<script src="/panel/static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/panel/static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+#!/app/users/.virtualenv/bin/python
+
+import sys
+from apps.users.models import User
+from apps.devices.models import Device
+import analytics
+from django.http import HttpResponse,HttpRequest
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
+from django.utils import formats
+from apps.panel import f5adapter as f5
+import requests
+import dateutil.parser
+from django.core.context_processors import csrf
+import jdatetime
+from django.conf import settings
+import django
+django.setup()
+
+
+if len(sys.argv) < 3:
+    print "Arguments: change_email [FROM] [TO]"
+
+user = User.objects.get(email=sys.argv[1])
+email = sys.argv[2]
+user.username = user.email = email
+user.id.email = email
+user.id.save()
+user.full_clean()
+user.save()
+
+for device in Device.objects.filter(user=user):
+    device.email = user.email
+    device.save()
+analytics.identify(user.id.user_id, {
+    "firstName" : user.first_name,
+    "email": user.email
+})
+alter_url = settings.FPAN['host'] + settings.FPAN['urls']['alter_user']
+r = requests.post(alter_url,verify=False, headers=f5.get_api_header(),data = {
+    "user_id": user.id.user_id,
+    "email" : email
+})
+analytics.track(user.id.user_id,"user_changed_profile",{
+    "firstName" : user.first_name,
+    "email": user.email
+})
+js = r.json()
+js["success"]
+print "Successfully Changed Email"
+analytics.flush()

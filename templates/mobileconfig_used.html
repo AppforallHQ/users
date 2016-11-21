@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>خطا در ثبت دستگاه</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<style type="text/css">
+@font-face {
+    font-family: 'roya';
+    src: url({% static 'fonts/WebRoya.eot' %});
+    src: url({% static 'fonts/WebRoya.eot?#iefix' %}) format('embedded-opentype'),
+         url({% static 'fonts/WebRoya.woff' %}) format('woff'),
+         url({% static 'fonts/WebRoya.ttf' %}) format('truetype'),
+         url({% static 'fonts/WebRoya.svg#roya' %}) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	padding:0;
+	font: 1em/1.5 normal;
+	text-align: center;
+	line-height: 1.5;
+	color: #333333;
+	background-color: #f6f6f6;
+	margin:0;
+	direction:rtl;
+}
+html {
+	height:100%;
+}
+a, a:visited {
+	color:#888;
+	text-decoration: none
+}
+a:hover {
+	color:#333;
+	text-decoration:none
+}
+::selection {
+	background: #353535; color:#fff; text-shadow:none /* Suserri */
+	}
+::-moz-selection {
+	background: #353535; color:#fff; text-shadow:none /* Firefox */
+}
+.content {
+	width:100%;
+	max-width:1080px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.erroricon{
+	margin:8% 0 4% 0;
+}
+.errortitle{
+	font-family:roya, Arial, Helvetica, sans-serif;
+	font-size:60px;
+	margin:0 10px;
+	color:#222;
+}
+.errortitle span{
+	font-family:Arial, Helvetica, sans-serif;
+}
+.errortext{
+	font-family:roya, Arial, Helvetica, sans-serif;
+	font-size:24px;
+	margin:20px;
+	color:#222;
+	text-align:center;
+}
+.errorlink {
+	margin:20px 0;
+	text-align:center;
+}
+.errorlink a{
+	display:inline-block;
+	padding:6px 20px;
+	border-radius:4px;
+	background:#f0f0f0;
+	font-family:roya, Arial, Helvetica, sans-serif;
+	font-size:18px;
+}
+</style>
+</head>
+<body>
+<div class="error-page">
+    <div class="content">
+        <div class="erroricon">
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="150px" height="150px" viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<defs>
+</defs>
+<path d="M195.946,0H59.984C26.855,0,0,26.855,0,59.984v135.962c0,33.129,26.855,59.984,59.984,59.984h135.962
+	c33.129,0,59.984-26.855,59.984-59.984V59.984C255.931,26.855,229.075,0,195.946,0z M239.935,195.946
+	c0,24.294-19.694,43.988-43.988,43.988H59.984c-24.294,0-43.988-19.694-43.988-43.988V59.984c0-24.294,19.694-43.988,43.988-43.988
+	h135.962c24.294,0,43.988,19.694,43.988,43.988V195.946z"/>
+<polygon points="140.396,65.99 140.392,65.982 136.077,65.982 136.076,65.99 115.418,65.99 60.226,189.956 85.219,189.956 
+	140.412,65.99 "/>
+<polygon points="135.404,110.918 170.592,189.947 195.584,189.947 147.901,82.85 "/>
+</svg>
+        </div>
+        <div class="errortitle">متاسفيم <span>:(</span></div>
+        <div class="errortext">شما پیش از این به کمک این لینک یک دستگاه را ثبت نموده‌اید. برای مشاهده‌ی دستگاه‌های ثبت‌شده و ثبت دستگاه جدید، به پنل کاربری مراجعه فرمایید.</div>
+				<div class="errorlink">
+					<a href="/panel/">رفتن به پنل کاربری</a>
+					<a href="/">بازگشت به صفحه اصلی</a>
+				</div>	</div>
+</div>
+</body>
+</html>

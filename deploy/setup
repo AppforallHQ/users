@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ -d ".virtualenv" ]; then
+  echo "virtualenv already exists"
+else
+  echo "setting up virtualenv"
+  virtualenv --python="$(whereis python2)" .virtualenv
+fi
+
+source .virtualenv/bin/activate
+
+echo "installing requirements"
+pip install -r requirements.txt
+
+foreman run bin/migrate
+
+echo "-----> Initiating PROJECT data"
+
+foreman run python initiate_PROJECT_data.py
+
+
+echo "-----> Collect Statics"
+
+foreman run python manage.py collectstatic --noinput
+
+echo "-----> Exporting Procfile"
+
+sudo ./export_procfile

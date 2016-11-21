@@ -1,0 +1,58 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+		<div class="main-body payment-box">
+
+		
+			<div class="content-body">
+				<div class="level-head">
+        	<div class="level-line">
+            <div class="base-line">
+              <span class="active-line full" id="active-line"></span>
+            </div>
+            <span class="level-circle one active"></span>
+            <span class="level-circle two active"></span>
+            <span class="level-circle tre"></span>
+          </div>
+          <div class="level-text one active">انتخاب نوع اشتراک</div>
+          <div class="level-text two">پرداخت آنلاین</div>
+          <div class="level-text tre">لذت ببرید!</div>
+        </div><!--level-title-->
+        <div class="level-body">
+
+          <div class="failure-bank-slide" id="slide-3">
+          
+						<div class="failure-error">عملیات پرداخت بانک با شکست مواجه شد. لطفا دوباره تلاش کنید
+						<p>
+							علت: <span>{{error_result}}</span>
+						</p>
+						</div>
+						<div class="receipt">
+							<div class="receipt-title">پلن انتخابی شما:<span id="show-plane-name">{{invoice.plan_label}} ماهه</span></div>
+							<div class="receipt-row"><span>مبلغ اصلی:</span><div id="show-plane-price">{{invoice.plan_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>تخفیف:</span><div id="show-promo">{{invoice.discount_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>مبلغ قابل پرداخت:</span><div id="show-payment">{{invoice.invoice_amt}}<span>تومان</span></div></div>
+						</div><!--receipt-->
+            <div class="banks-logo-box">
+           		<div class="gotobankstitle"> با کلیک روی لوگوی یکی از بانک‌ها پرداخت خود را از طریق درگاه آن بانک و بصورت کاملا امن انجام دهید</div>
+              <a href="" class="logo-box bank-pasargad disable"><span>در حال حاضر این بانک فعال نیست</span></a>
+							<a href="{{invoice.invoice_url}}" class="logo-box bank-melat"></a>
+              <a href="" class="logo-box bank-saman disable">
+              <span>در حال حاضر این بانک فعال نیست</span></a>
+            </div><!--banks-logo-box-->
+                    
+          </div><!--failure-bank-slide-->
+          
+        </div><!--level-body-->
+			</div><!--content-body-->
+      
+      
+    
+		</div><!--payment-box-->
+{% endblock %}
+
+{% block customJS %}
+<script type="application/javascript">
+</script>
+{% endblock %}

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source .virtualenv/bin/activate
+exec foreman run python manage.py celery worker -Q normal

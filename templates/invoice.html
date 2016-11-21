@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	<div class="main-body the-invoice-box">
+        <div class="invoice-title">صورتحساب</div>
+		
+{% if invoice.invoice_stat == 'paid' %}
+<div class="row">
+	<span class="label">تاریخ پرداخت :</span>
+	<span id="show-pay-date">{{ invoice.pay_date }}</span>
+</div>
+{% endif %}
+
+<div class="row">
+	<span class="label">تاریخ صدور فاکتور :</span>
+	<span id="show-orig-price">{{ invoice.created_at }}</span>
+</div>
+
+<div class="row">
+	<span class="label">نوع پلن:</span>
+	<span id="show-plan-label">{{ invoice.plan_label }} ماهه</span>
+</div>
+
+<div class="row">
+	<span class="label">مبلغ اصلی:</span>
+	<span id="show-orig-price">{{ invoice.plan_amt }}</span>
+</div>
+
+<div class="row">
+	<span class="label">تخفیف:</span>
+	<span id="show-discount">{{ invoice.discount_amt }}</span>
+</div>
+
+{% if invoice.invoice_stat == 'paid' %}
+<div class="row">
+	<span class="label">مبلغ پرداخت شده:</span>
+	<span id="show-price">{{ invoice.invoice_amt }}</span>
+</div>
+
+<div class="row">
+	<span class="label">کد رهگیری:</span>
+	<span id="show-sale-refrence">{{ invoice.sale_refrence_id }}</span>
+</div>
+                        
+{% else %}
+<div class="row">                          
+	<span class="label">مبلغ قابل پرداخت:</span>
+	<span id="show-price">{{ invoice.invoice_amt }}</span>
+</div>                       
+{% endif %} 
+                    
+{% if invoice.invoice_stat == 'unpaid' %}  
+<div class="row">
+	<a class="ibutton green" href="/panel/changeplan/{{invoice.device_id}}">تغییر اشتراک</a>
+	<a class="ibutton blue" href="{{invoice.invoice_url}}" >پرداخت آنلاین</a>
+</div>
+{% endif %}
+		
+		</div><!--the-invoice-box-->
+                
+{% endblock %}
+
+{% block customJS%}
+<script type="application/javascript">
+</script>
+{% endblock %}

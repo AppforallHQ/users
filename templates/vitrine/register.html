@@ -1,0 +1,27 @@
+﻿{% extends "vitrine/base.html" %}
+
+{% block main %}
+<main class="signup-page">
+	<div class="topbgline"></div>
+	<section class="container">
+		<section class="apps-download-counter">
+			<div class="counter-title"><span>تعداد دانلود لحظه‌ای</span> برنامه‌های اپفورال توسط کاربران</div>
+			<div class="downloadscounter"></div>
+		</section>
+		<h1 class="page-title fa"><span>نصب اپفورال</span> در کمتر از 2 دقیقه!</h1>
+		<section class="signup-block">
+			<section class="signup-title">
+				<div class="stage-title stagettl1">انتخاب اشتراک</div>
+        <span class="title-arrow"></span>
+				<div class="stage-title stagettl2">ثبت نام در اپفورال</div>
+        <span class="title-arrow"></span>
+				<div class="stage-title stagettl3">پرداخت آنلاین</div>
+			</section>
+      {% include "vitrine/section1.html" %}
+      {% include "vitrine/section2.html" %}
+      {% include "vitrine/section3.html" %}
+      <div class="the-loader" id="loader"><span></span></div>
+		</section><!--signup-block-->
+	</section>
+</main>
+{% endblock %}

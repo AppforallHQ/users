@@ -1,0 +1,61 @@
+<section class="signup-sect2 fa">
+    <section class="reg-stage">
+        <div class="col-1-6 floatleft">
+            <div class="left-col">
+                <div class="userag"></div>
+                <div class="usertext">تمامی اطلاعاتی که طی مراحل ثبت‌ نام وارد می‌کنید، کاملا محرمانه تلقی می‌شود و اپفورال بدون اطلاع شما هرگز برای تبلیغات و موارد دیگری که اجازه نداده‌اید، از آن استفاده نخواهد کرد.</div>
+            </div>
+        </div>
+        <div class="col-1-6 floatright">
+            <div class="reg-sec">
+                <div class="changplan-title">
+                    <div class="selected">
+                        <p>دوره اشتراک انتخابی شما: <span class="d"></span></p>
+                        <div class="change">تغییر اشتراک</div>
+                    </div>
+                </div>
+                <form id="register_form" class="reg-form" method="post">
+                    <div style="display: none" class="error"><ul></ul></div>
+                    <!-- <div class="success">عملیات ثبت نام با موفقیت انجام شد</div> -->
+                    <div class="row">
+                        <label>نام</label>
+                        <input name="first_name" type="text" placeholder="نام" class="input">
+                    </div>
+                    <div class="row">
+                        <label>ایمیل</label>
+                        <input name="username" type="email" placeholder="ایمیل" class="input">
+                    </div>
+                    <div class="row">
+                        <label>شماره موبایل</label>
+                        <input name="mobile_number" type="text" placeholder="شماره موبایل" class="input ltr">
+                    </div>
+                    <div class="row">
+                        <label>رمز عبور انتخابی</label>
+                        <input name="password" type="password" placeholder="رمز عبور انتخابی" class="input">
+                    </div>
+                    <div class="row">
+                        <div class="chb">
+                            <input name="allow_sms" id="reg-app-sms" type="checkbox">
+                            <label for="reg-app-sms">پیامک فعالسازی اپفورال را برایم بفرست.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="chb">
+                            <input name="signup_newsletter" id="reg-nwst" type="checkbox" checked="checked">
+                            <label for="reg-nwst">مرا در خبرنامه اپفورال عضو کن.</label>
+                        </div>
+                    </div>
+
+                    <input id="registeration_plan" type="hidden" name="plan" value="{{ plan }}">
+                    <input id="registeration_plan" type="hidden" name="referredBy" value="{{ referredBy }}">
+                    <input id="registeration_plan" type="hidden" name="utm_campaign" value="{{ utm_campaign }}">
+
+                    <div class="row">
+                        <input type="submit" value="مرحله بعد" class="ibtn reg-submit" disabled="disabled">
+                    </div>
+                </form><!--reg-form-->
+            </div><!--reg-sec-->
+        </div>
+
+	</section>
+</section><!--signup-sect2-->

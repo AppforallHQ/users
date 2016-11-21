@@ -1,0 +1,63 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+		<div class="main-body payment-box">
+
+		
+			<div class="content-body">
+				<div class="level-head">
+        	<div class="level-line">
+            <div class="base-line">
+              <span class="active-line full" id="active-line"></span>
+            </div>
+            <span class="level-circle one active"></span>
+            <span class="level-circle two active"></span>
+            <span class="level-circle tre active"></span>
+          </div>
+          <div class="level-text one active">انتخاب نوع اشتراک</div>
+          <div class="level-text two">پرداخت آنلاین</div>
+          <div class="level-text tre">لذت ببرید!</div>
+        </div><!--level-title-->
+        <div class="level-body">
+
+          <div class="bank-back-slide" id="slide-3">
+          
+						<div class="receipt">
+							<div class="payment-stamp"></div>
+							<div class="receipt-title">پلن انتخابی شما:<span id="show-plane-name">{{invoice.plan_label}} ماهه</span></div>
+							<div class="receipt-row"><span>مبلغ اصلی:</span><div id="show-plane-price">{{invoice.plan_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>تخفیف:</span><div id="show-promo">{{invoice.discount_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>مبلغ قابل پرداخت:</span><div id="show-payment">{{invoice.invoice_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>کد رهگیری:</span><div id="show-sale-refrence">{{invoice.sale_refrence_id}}</div></div>
+						</div><!--receipt-->
+            {% if is_invoice %}
+	    <div class="welcome-text">پرداخت با موفقیت انجام شد</div>
+            <div class="helpbox">
+            	<div class="box-body">
+ دوره اشتراک شما با موفقیت تمدید شد. از اینکه کاربر اپفورال هستید ممنونیم.
+               </div>
+            </div><!--helpbox-->	    
+	    {% else %}
+            <div class="welcome-text">به جمع کاربران اپفورال خوش آمدید.</div>
+            <div class="helpbox">
+            	<div class="box-title">راهنمای استفاده از اپفورال</div>
+            	<div class="box-body">
+ هم‌اکنون ایمیلی به شما ارسال شده که حاوی لینک فعالسازی است. لطفا آن را "با دستگاه (آیفون- آیپدی) که می‌خواهید اپفورال روی آن نصب شود" باز کنید. بلافاصله پس از شناسایی دستگاه، فایل اجرایی اپفورال به شما ارسال می‌شود.
+               </div>
+            </div><!--helpbox-->
+            {% endif %}
+          </div><!--bank-back-slide-->
+          
+        </div><!--level-body-->
+			</div><!--content-body-->
+      
+      
+    
+		</div><!--payment-box-->
+{% endblock %}
+
+{% block customJS %}
+<script type="application/javascript">
+</script>
+{% endblock %}

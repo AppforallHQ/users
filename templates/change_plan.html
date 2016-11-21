@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+		<div class="main-body payment-box">
+
+		
+			<div class="content-body">
+				
+        <div class="level-body">
+        
+	<form method="POST" name="change_plan">
+	<div class="select-plane-slide" id="slide-1">
+          	<div class="slide-title">لطفا نوع اشتراک خود برای دوره آتی را انتخاب کنید</div>
+          	<div class="showallplane">
+			
+		{% for plan in plans %}
+            	<div class="col-1-12 col-2-4">
+              	<div class="plane-box {% if plan.recommended %}{{ 'active'}}{%endif%} {% if plan.special_offer %}{{ 'specialoffer'}}{%endif%} ">
+		  {%if plan.recommended %}
+                  <div class="currentplan"><span>اشتراک فعلی شما</span></div>
+                  {% endif %}
+		  
+                	<div class="title">{{ plan.period_length }} ماهه</div>
+                  <span class="ord-line"></span>
+                  <div class="body">
+			<div class="plane-price">{{plan.price}} هزار تومان</div>
+                    <div>بدون محدودیت دانلود</div>
+                	</div>
+                  <div class="planesubmit" id="planebtn_{{plan.iter}}" data-active="#radioplan{{plan.iter}}" data-price="{{plan.price_unformatted}}" data-discount="{{plan.discount}}" data-orig-price="{{plan.orig_price}}" data-period="{{plan.period_length}}">انتخاب</div>
+                </div><!--plane-box-->
+              </div>
+		{% endfor %}
+  
+
+            </div><!--showallplane-->
+	    {% if ERROR %}
+		<div class="slide-error" style="display: block">لطفا یکی از دوره‌های اشتراک بالا را انتخاب کنید</div>
+	    {% endif %}
+            <div class="slidebottom-box">
+							<input type="hidden" name="active-plan" id="active-plan-value" value="2" />
+          		<div class="next-slide-link" onclick="document.change_plan.submit()">تایید و پرداخت</div>
+            </div><!--slidebottom-box-->
+          </div><!--select-plane-slide-->
+	  </form>
+          
+          
+        </div><!--level-body-->
+			</div><!--content-body-->
+      
+      
+    
+		</div><!--payment-box-->
+{% endblock %}
+
+{% block customJS %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

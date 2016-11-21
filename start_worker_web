@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source .virtualenv/bin/activate
+NEW_RELIC_CONFIG_FILE=newrelic.ini
+export NEW_RELIC_CONFIG_FILE
+exec newrelic-admin run-program uwsgi \
+     --http :$PORT \
+     --master --pidfile=/tmp/userpi.pid \
+     --wsgi PROJECT.wsgi \
+     --processes 3 \
+     --threads 6 \
+     --stats /tmp/users.socket \
+     --max-requests 5000 \
+     --memory-report

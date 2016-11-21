@@ -1,0 +1,64 @@
+<section class="signup-sect1 fa">
+    <section class="plan-stage">
+        <div class="handtext1515"><div><span></span></div></div>
+        <div class="planslist">
+            <div class="plancol">
+                <div class="theplan plan-1 special">
+                    <div class="thetitle">
+                        <h1>رایگان</h1>
+                        <div class="price">یکساله رایگان</div>
+                    </div>
+                    <div class="thebody">
+                        <div class="row">
+                            <h6>دانلود نامحدود بیش از 2500 برنامه رایگان</h6>
+                            <span class="true"></span>
+                        </div>
+                        <div class="row">
+                            <h6>دانلود نامحدود بیش از 9500 برنامه پولی</h6>
+                            <span class="true"></span>
+                        </div>
+                        <div class="row">
+                            <h6>خرید ریالی همه برنامه‌های اپ استور آمریکا</h6>
+                            <span class="true"></span>
+                        </div>
+                        <a id="dirdl" href="#" data-plan="0" class="planbutton">دانلود مستقیم</a>
+                    </div>
+                </div>
+            </div><!--plancol-->
+            {% for data in plans_data %}
+            <div class="plancol">
+                <div class="theplan plan-{{forloop.counter|add:'1'}} blur">
+                    {% if not forloop.counter == 1 %}
+                    <div class="planflag"></div>
+                    {% endif %}
+                    <div class="thetitle">
+                        <h1>{{data.label}} ماهه</h1>
+                        <div class="price">{{data.price}} هزار تومان</div>
+                    </div>
+                    <div class="thebody">
+                        <div class="row">
+                            <h6>دانلود نامحدود بیش از 2500 برنامه رایگان</h6>
+                            <span class="true"></span>
+                        </div>
+                        <div class="row">
+                            <h6>دانلود نامحدود بیش از 9500 برنامه پولی</h6>
+                            <span class="true"></span>
+                        </div>
+                        <div class="row">
+                            <h6>خرید ریالی همه برنامه‌های اپ استور آمریکا</h6>
+                            <span class="true"></span>
+                        </div>
+
+                        <submit type="submit" class="planbutton-disabled" disabled="">ثبت نام</submit>
+                    </div>
+                </div>
+            </div><!--plancol-->
+            {% endfor %}
+        </div><!--planslist-->
+        <div class="table-spec">
+            <div class="row">دانلود نامحدود بیش از 2500 برنامه رایگان</div>
+						<div class="row">دانلود نامحدود بیش از 9500 برنامه پولی</div>
+						<div class="row">خرید ریالی همه برنامه‌های اپ استور آمریکا</div>
+				</div>
+		</section><!--plan-stage-->
+</section><!--signup-sect1-->

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+	
+		<div class="main-body payment-box">
+
+		
+			<div class="content-body">
+				
+        <div class="level-body">
+          
+          <div class="select-bank-slide" id="slide-2" style="display: block">
+          	<div class="slide-title">دوره اشتراک و مبلغ صورتحساب شما بصورت زیر است:</div>
+          	<div class="receipt">
+							<div class="receipt-title">پلن انتخابی شما:<span id="show-plane-name"><span class="period">{{invoice.plan_label}}</span> ماهه</span></div>
+							<div class="receipt-row"><span>مبلغ اصلی:</span><div id="show-plane-price">{{invoice.plan_amt}}<span>تومان</span></div></div>
+							<div class="receipt-row"><span>تخفیف:</span><div id="show-promo">0<span>تومان</span></div></div>
+							<div class="receipt-row"><span>مبلغ قابل پرداخت:</span><div id="show-payment">{{invoice.amount}}<span>تومان</span></div></div>
+						</div><!--receipt-->
+            
+            <div id="promo_code_enter" class="promo-code-box">
+              <span class="promo-title">کد تخفیف دارید؟ اینجا واردش کنید:</span>
+              <div class="promo-code-form">
+                <form>
+                  <input type="text" name="promo_code" />
+                  <input type="submit" value="ثبت" />
+                </form>
+              </div>
+              <div class="slide-error" style="display:none;">
+                کد تخفیف نا معتبر می‌باشد
+              </div>
+              <div class="slide-success" style="display:none;">
+                <span class="title">کد تخفیف معتبر است!</span>
+                نهاد همکار:<span class="partner">گروه شاتل</span><br />
+                مبلغ نهایی فاکتور:<span class="final_price">۱۵۲۰۰</span> تومان
+              </div>
+            </div>
+            
+	    <form method="post" class="payment-form">
+		<input type="hidden" name="gateway" class="payment-gateway">
+	    </form>
+	    
+            <div class="hidebankpay" style="display:none">
+              <p> بر اساس کد تخفیفی که وارد کرده‌اید نیازی به پرداخت آنلاین ندارید. لطفا مراحل ثبت نام را ادامه دهید.</p>
+              <a href="{{invoice.invoice_url}}" data-gateway="mellat" class="invoice-payment invoice_pay_url_free more-link">ادامه</a>
+            </div>
+            
+			<div class="unablepaytitle" style="display:{{payment_availablity}}">در حال حاضر امکان پرداخت بانکی از طرف بانک عامل ممکن نمی باشد.</div>
+			{% if payment_availablity == "none" %}
+            <div class="banks-logo-box">
+           		<div class="gotobankstitle"> با کلیک روی لوگوی یکی از بانک‌ها پرداخت خود را از طریق درگاه آن بانک و بصورت کاملا امن انجام دهید</div>
+              <a href="" class="logo-box bank-pasargad disable"><span>در حال حاضر این بانک فعال نیست</span></a>
+            	<a href="{{invoice.invoice_url}}" data-gateway="mellat" id="invoice_pay_url_mellat" class="invoice-payment logo-box bank-melat"></a>
+              <a href="" class="logo-box bank-saman disable">
+              <span>در حال حاضر این بانک فعال نیست</span></a>
+            </div>
+			{% endif %}
+            
+						<div class="bottom-line">
+							<a href="" class="prew-slide">بازگشت به مرحله قبل</a>
+            </div>
+            
+          </div><!--select-plane-slide-->
+          
+        </div><!--level-body-->
+			</div><!--content-body-->
+      
+      
+    
+		</div><!--payment-box-->
+{% endblock %}
+
+{% block customJS %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

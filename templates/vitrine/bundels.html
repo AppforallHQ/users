@@ -1,0 +1,21 @@
+<section class="bundles-box">
+    <h1 class="bundles-title">معرفی مجموعه‌ای از برنامه های پرطرفدار برای آیفون و آیپد شما</h1>
+    <section class="bundles-list fa">
+        {% for bundle in bundles %}
+        <section class="col-1-3">
+            <figure class="the-bundle">
+                <a href="{{ bundle.link }}">
+                    <img src="{{ bundle.image['site'] }}">
+                    <figcaption class="bundle-title">{{ bundle.title }}</figcaption>
+                </a>
+            </figure>
+        </section><!--col-1-3-->
+        {% endfor %}
+
+    </section><!--bundles-list-->
+    <p class="bottom-line">
+        <a href="#" class="showallappp-button">
+            مشاهده همه برنامه های موجود در اپفورال
+        </a>
+    </p>
+</section><!--bundles-box-->
