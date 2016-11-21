@@ -456,7 +456,7 @@ def get_user_id_from_username(request):
     user = get_object_or_404(User, username__iexact=username)
     device = get_or_create_basic_device(user, idfv, aid, uuid)
 
-    token = requests.post('http://localhost:8006/panel/api/token/get', data={'username': username,
+    token = requests.post('http://API/token/get', data={'username': username,
                                                                              'password': password,
                                                                              'device': device.pk})
     if token.status_code != 200 or not token.json()['success']:
